@@ -1,0 +1,4 @@
+# Project requirements
+flask
+meteostat
+psycopg2

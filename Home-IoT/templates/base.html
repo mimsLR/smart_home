@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SmartHome.</title>
+    <!-- Local style sheet -->
+    <link rel="stylesheet" type="text/css" href="static/style.css" />
+    <!-- Hamburger menu (bars) icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Bootstrap 5 CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Favicon -->
+    <link rel="SmartHome Icon" href="static/favicon.ico" />
+  </head>
+
+  <body>
+    <div class="page-container">
+      <nav class="navbar-container">
+        <h1><a href="{{ url_for('index') }}">SmartHome.</a></h1>
+        <div class="links-container">
+          <a href="{{ url_for('index') }}">Home</a>
+          <a href="{{ url_for('about') }}">About</a>
+          <a href="{{ url_for('data') }}">My Data</a>
+        </div>
+      </nav>
+
+      <div class="content">{% block content %} {% endblock %}</div>
+    </div>
+  </body>
+</html>

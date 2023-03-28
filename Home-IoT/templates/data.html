@@ -1,0 +1,167 @@
+{% extends 'base.html' %} {% block content %}
+
+<article>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col" style="text-align: center; padding-bottom: 20px">
+        <h1 style="color: white">Water and Electricity Usage</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        class="col"
+        style="
+          width: 700px;
+          height: 500px;
+          background-color: white;
+          border: solid;
+          border-radius: 20px;
+          border-color: rgb(30, 33, 36);
+          margin-right: 10px;
+        "
+      >
+        <canvas id="waterChart"></canvas>
+      </div>
+      <div
+        class="col"
+        style="
+          width: 700px;
+          height: 500px;
+          background-color: white;
+          border: solid;
+          border-radius: 20px;
+          border-color: rgb(30, 33, 36);
+          margin-right: 10px;
+        "
+      >
+        <canvas id="electricChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Water chart
+    new Chart(document.getElementById("waterChart"), {
+          type: 'line',
+          data: {
+            labels: {{ labels | tojson }},
+          datasets: [{
+            data: {{ waterValues | tojson }},
+          label: "Water Cost",
+          borderColor: "rgb(146, 48, 215)",
+          fill: true,
+          lineTension:0.4
+          },
+        ]
+      },
+          options: {
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              ticks: {
+                borderColor: "red",
+                display: true,
+                autoSkip: true,
+                maxTicksLimit: 9,
+              }
+            },
+            y: {
+                ticks: {
+                    callback: function(val, index) {
+                        return "$" + val;
+                    },
+                }
+            }
+          },
+          title: {
+            display: true,
+            text: 'Water Cost'
+          },
+          plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return 'Water Cost: $' + context.parsed.y;
+                    }
+                }
+            }
+          }
+        }
+    });
+
+    // Electricity chart
+    new Chart(document.getElementById("electricChart"), {
+          type: 'line',
+          data: {
+            labels: {{ labels | tojson }},
+            datasets: [{
+                data: {{ electricValues | tojson }},
+                label: "Electricity Cost",
+                borderColor: "rgb(146, 48, 215)",
+                fill: true,
+                lineTension: 0.4
+            }]
+          },
+          options: {
+            maintainAspectRatio: false,
+            scales: {
+              x: {
+                ticks: {
+                    borderColor: "red",
+                    display: true,
+                    autoSkip: true,
+                    maxTicksLimit: 9
+                }
+              },
+              y: {
+                ticks: {
+                    callback: function(val, index) {
+                        return "$" + val;
+                    },
+                }
+            }
+          },
+          title: {
+            display: true,
+            text: 'Electricity Cost'
+          },
+          plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return 'Electricity Cost: $' + context.parsed.y;
+                    }
+                }
+            }
+          }
+        }
+    });
+  </script>
+  <br />
+  <div class="container">
+    <div class="row flex-row justify-content-center">
+      <div
+        class="col"
+        style="
+          text-align: center;
+          border: solid;
+          border-radius: 20px;
+          background-color: rgb(46, 12, 79);
+          border-color: white;
+          border-width: 1px;
+          max-width: fit-content;
+        "
+      >
+        <!-- Total cost -->
+        <p style="color: white; margin: 15px">
+          Total Cost for Previous Month: ${{ roundDec }}
+        </p>
+      </div>
+    </div>
+  </div>
+</article>
+
+{% endblock %}

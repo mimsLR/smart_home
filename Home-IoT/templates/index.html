@@ -1,0 +1,494 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <form method="post" class="row">
+    <div class="col-6">
+      <article>
+        <div class="floorplan">
+            <!-- Living Room overhead -->
+            <div class="square livingRoomOverhead" 
+            {% if (status["isLivingRoomOverheadOn"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Master Bedroom overhead -->
+            <div class="square masterBedroomOverhead" 
+            {% if (status["isMasterBedroomOverheadOn"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Master Bathroom overhead -->
+            <div class="square masterBathroomOverhead" 
+            {% if (status["isMasterBathroomOverheadOn"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Master Bathroom exhaust -->
+            <div class="square masterBathroomExhaust" 
+            {% if (status["isMasterBathroomOverheadOn"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Bedroom 1 overhead -->
+            <div class="square bedroom1Overhead" 
+            {% if (status["isBedroom1OverheadOn"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Bedroom 2 overhead -->
+            <div class="square bedroom2Overhead" 
+            {% if (status["isBedroom2OverheadOn"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Front door -->
+            <div class="square frontDoor" 
+            {% if (status["isFrontDoorOpen"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Back door -->
+            <div class="square backDoor" 
+            {% if (status["isBackDoorOpen"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Garage door 1 -->
+            <div class="square garageDoor1" 
+            {% if (status["isGarageDoorOpen"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Garage door 2 -->
+            <div class="square garageDoor2" 
+            {% if (status["isGarageDoorOpen"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Guest Bathroom overhead -->
+            <div class="square guestBathroomOverhead" 
+            {% if (status["isGuestBathroomOverheadOn"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Guest Bathroom exhaust -->
+            <div class="square guestBathroomExhaust" 
+            {% if (status["isGuestBathroomOverheadOn"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Kitchen overhead -->
+            <div class="square kitchenOverhead" 
+            {% if (status["isKitchenOverheadOn"] == True) %}
+                style="background-color:rgba(0,255,0,0.4)"
+            {% else %} 
+                style="background-color:rgba(255,0,0,0.4)"
+            {% endif %}>
+            </div>
+            <!-- Floorplan image -->
+            <img src="static/floorPlan.jpg" alt="Floorplan"/>
+        </div>
+        <style>
+          .floorplan {
+            position: relative;
+          }
+          .square {
+            position: absolute;
+          }
+          .livingRoomOverhead {
+            top: 84%;
+            left: 41.5%;
+            width: 38px;
+            height: 31px;
+            z-index: 1;
+          }
+          .masterBedroomOverhead {
+            top: 8.35%;
+            left: 34.7%;
+            width: 38px;
+            height: 31px;
+            z-index: 1;
+          }
+          .masterBathroomOverhead {
+            top: 10.5%;
+            left: 20%;
+            width: 22px;
+            height: 19.2px;
+            z-index: 1;
+          }
+          .masterBathroomExhaust {
+            top: 6.4%;
+            left: 28.5%;
+            width: 23px;
+            height: 21.5px;
+            z-index: 1;
+          }
+          .bedroom1Overhead {
+            top: 14.3%;
+            left: 71.2%;
+            width: 38px;
+            height: 31px;
+            z-index: 1;
+          }
+          .bedroom2Overhead {
+            top: 38.2%;
+            left: 70%;
+            width: 38px;
+            height: 31px;
+            z-index: 1;
+          }
+          .frontDoor {
+            top: 40%;
+            left: 10.85%;
+            width: 6.6px;
+            height: 56.5px;
+            z-index: 1;
+          }
+          .backDoor {
+            top: 85.2%;
+            left: 87.3%;
+            width: 6.6px;
+            height: 32.5px;
+            z-index: 1;
+          }
+          .garageDoor1 {
+            top: 59.3%;
+            left: 10.85%;
+            width: 6.6px;
+            height: 57.8px;
+            z-index: 1;
+          }
+          .garageDoor2 {
+            top: 71.8%;
+            left: 10.85%;
+            width: 6.6px;
+            height: 57.8px;
+            z-index: 1;
+          }
+          .guestBathroomOverhead {
+            top: 8.4%;
+            left: 46.4%;
+            width: 22px;
+            height: 17.5px;
+            z-index: 1;
+          }
+          .guestBathroomExhaust {
+            top: 6.4%;
+            left: 53.6%;
+            width: 23px;
+            height: 21.5px;
+            z-index: 1;
+          }
+          .kitchenOverhead {
+            top: 62.5%;
+            left: 74.5%;
+            width: 31px;
+            height: 38px;
+            z-index: 1;
+          }
+        </style>
+      </article>
+    </div>
+    <div class="col">
+      <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <!-- Living Room -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Living Room</h5>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="livingRoomOverhead" value="{{
+                  request.form['livingRoomOverhead'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isLivingRoomOverheadOn"] == True) %} checked {% endif
+                  %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Overhead Light</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="livingRoomLamp1" value="{{
+                  request.form['livingRoomLamp1'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isLivingRoomLamp1On"] == True) %} checked {% endif %}
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Lamp 1</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="livingRoomLamp2" value="{{
+                  request.form['livingRoomLamp2'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isLivingRoomLamp2On"] == True) %} checked {% endif %}
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Lamp 2</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="livingRoomTV" value="{{ request.form['livingRoomTV'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isLivingRoomTVOn"] == True) %} checked {% endif %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Television</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox"
+                    name="guestBathroomOverhead" value="{{
+                    request.form['guestBathroomOverhead'] }}"
+                    id="flexSwitchCheckDefault" {% if
+                    (status["isGuestBathroomOverheadOn"] == True) %} checked {%
+                    endif %} />
+                    <label class="form-check-label" for="flexSwitchCheckDefault"
+                      >Guest Bathroom Overhead</label
+                    >
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox"
+                    name="kitchenOverhead" value="{{
+                    request.form['kitchenOverhead'] }}"
+                    id="flexSwitchCheckDefault" {% if
+                    (status["isKitchenOverheadOn"] == True) %} checked {% endif %}
+                    />
+                    <label class="form-check-label" for="flexSwitchCheckDefault"
+                      >Kitchen Overhead</label
+                    >
+                  </div>
+              </div>
+            </div>
+          </div>
+          <!-- Master Bedroom -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Master Bedroom</h5>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="masterBedroomOverhead" value="{{
+                  request.form['masterBedroomOverhead'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isMasterBedroomOverheadOn"] == True) %} checked {%
+                  endif %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Overhead Light</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="masterBedroomLamp1" value="{{
+                  request.form['masterBedroomLamp1'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isMasterBedroomLamp1On"] == True) %} checked {% endif
+                  %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Lamp 1</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="masterBedroomLamp2" value="{{
+                  request.form['masterBedroomLamp2'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isMasterBedroomLamp2On"] == True) %} checked {% endif
+                  %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Lamp 2</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="masterBathroomOverhead" value="{{
+                  request.form['masterBathroomOverhead'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isMasterBathroomOverheadOn"] == True) %} checked {%
+                  endif %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Bathroom Overhead</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="masterBedroomTV" value="{{
+                  request.form['masterBedroomTV'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isMasterBedroomTVOn"] == True) %} checked {% endif %}
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Television</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Bedroom 1 -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Bedroom 1</h5>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="bedroom1Overhead" value="{{
+                  request.form['bedroom1Overhead'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isBedroom1OverheadOn"] == True) %} checked {% endif
+                  %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Overhead Light</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="bedroom1Lamp1" value="{{ request.form['bedroom1Lamp1']
+                  }}" id="flexSwitchCheckDefault" {% if
+                  (status["isBedroom1Lamp1On"] == True) %} checked {% endif %}
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Lamp 1</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="bedroom1Lamp2" value="{{ request.form['bedroom1Lamp2']
+                  }}" id="flexSwitchCheckDefault" {% if
+                  (status["isBedroom1Lamp2On"] == True) %} checked {% endif %}
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Lamp 2</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Bedroom 2 -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Bedroom 2</h5>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="bedroom2Overhead" value="{{
+                  request.form['bedroom2Overhead'] }}"
+                  id="flexSwitchCheckDefault" {% if
+                  (status["isBedroom2OverheadOn"] == True) %} checked {% endif
+                  %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Overhead Light</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="bedroom2Lamp1" value="{{ request.form['bedroom2Lamp1']
+                  }}" id="flexSwitchCheckDefault" {% if
+                  (status["isBedroom2Lamp1On"] == True) %} checked {% endif %}
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Lamp 1</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="bedroom2Lamp2" value="{{ request.form['bedroom2Lamp2']
+                  }}" id="flexSwitchCheckDefault" {% if
+                  (status["isBedroom2Lamp2On"] == True) %} checked {% endif %}
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Lamp 2</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Doors -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Doors</h5>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="frontDoor" value="{{ request.form['frontDoor'] }}"
+                  id="flexSwitchCheckDefault" {% if (status["isFrontDoorOpen"]
+                  == True) %} checked {% endif %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Front Door</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="backDoor" value="{{ request.form['backDoor'] }}"
+                  id="flexSwitchCheckDefault" {% if (status["isBackDoorOpen"] ==
+                  True) %} checked {% endif %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Back Door</label
+                  >
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox"
+                  name="garageDoor" value="{{ request.form['garageDoor'] }}"
+                  id="flexSwitchCheckDefault" {% if (status["isGarageDoorOpen"]
+                  == True) %} checked {% endif %} />
+                  <label class="form-check-label" for="flexSwitchCheckDefault"
+                    >Garage Doors</labelx
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Thermostat -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Thermostat</h5>
+                <div class="row">
+                    <input class="form-control form-control-lg" type="number"
+                    name="temperature"
+                    min="50"
+                    max="80"
+                    value="{{ request.form['thermostatTemperature'] }}"
+                    placeholder=70
+                    />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Save Changes -->
+          <div class="container text-center">
+            <button class="btn" style="background-color: rgb(46, 12, 79); color: white;" type="submit">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
